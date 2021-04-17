@@ -1,0 +1,12 @@
+name: Run Tests
+on: [push]
+jobs:
+  Run-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: yarn
+      - name: Run Jest tests
+        run: yarn test

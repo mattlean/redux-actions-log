@@ -122,4 +122,8 @@ describe('Redux Actions Log Middleware', () => {
     log.clearActions()
     expect(actions).toHaveLength(0)
   })
+
+  it('fails lol', () => {
+    expect('foo').toBe('bar')
+  })
 })

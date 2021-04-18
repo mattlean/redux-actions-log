@@ -187,8 +187,6 @@ describe('Redux Actions Log with Redux store with Redux Thunk middleware', () =>
     expect(typeof actions[0]).toBe('function')
     expect(actions[1]).toEqual(createTestAction())
     expect(actions[2]).toEqual(createTestAction('foo'))
-
-    console.log(log.getActions())
   })
 
   it('Log clears everything, including thunks', () => {

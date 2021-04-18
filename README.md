@@ -12,6 +12,8 @@
 
 ## Usage
 
+Getting action logging setup is simple.
+
 ```javascript
 import { createStore, applyMiddleware } from 'redux';
 import setupReduxActionsLog from 'redux-actions-log';
@@ -29,6 +31,25 @@ console.log(actionsLog.getActions());
 // logs "[ { type: 'FOOBAR_ACTION_TYPE', payload: 'baz' } ]"
 ```
 
+`setupReduxActionsLog` will return the middleware you apply to the Redux store along with the log that will keep track of the dispatched actions.
+
+Once the middleware is applied, all you need to do is call `actionsLog.getActions` to retrieve an array of all the logged actions.
+
+By default, the actions log will only log standard Redux actions. If you want to log other functionality that affects actions like [Redux Thunk](https://npmjs.com/package/redux-thunk), you must enable the `logAll` option. There are two ways to do this:
+
+**Method 1: Enable `logAll` option in `setupReduxActionsLog` parameter.**
+
+```javascript
+const [actionsLogMiddleware, actionsLog] = setupReduxActionsLog(true);
+```
+
+**Method 2: Set `logAll` option with `actionsLog.setLogAll`.**
+
+```javascript
+const [actionsLogMiddleware, actionsLog] = setupReduxActionsLog();
+actionsLog.setLogAll(true);
+```
+
 Note that this package supports [TypeScript](https://www.typescriptlang.org) and declaration files are included.
 
 ## Why Do I Need This?
@@ -43,7 +64,7 @@ Now if the above options don't work for you, then this middleware is hopefully w
 
 ## API
 ```javascript
-setupReduxActionsLog() => [middleware, actionsLog]
+setupReduxActionsLog(logAll?: boolean) => [middleware, actionsLog]
 ```
 The default export of the package will return a function that returns two things:
 
@@ -59,6 +80,16 @@ Returns the actions of the store.
 actionsLog.clearActions()
 ```
 Clears the stored actions.
+
+```javascript
+actionsLog.setLogAll(logAll: boolean)
+```
+Turn log all option on or off.
+
+```javascript
+actionsLog.getLogAll() => logAll: boolean
+```
+Get current log all setting.
 
 ## License
 

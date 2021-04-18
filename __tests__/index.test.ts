@@ -148,7 +148,7 @@ describe('Redux Actions Log with Redux store with Redux Thunk middleware', () =>
     expect(actions[0]).toEqual(createTestAction())
   })
 
-  it('Log tracks thunks when logAll is enabled', () => {
+  it('Log tracks thunks when logAll is enabled though setup parameter', () => {
     const [store, log] = setupTestThunkStoreAndLog(true)
 
     // @ts-expect-error: Can't properly type dispatch to support thunks
@@ -158,6 +158,37 @@ describe('Redux Actions Log with Redux store with Redux Thunk middleware', () =>
     expect(actions).toHaveLength(2)
     expect(typeof actions[0]).toBe('function')
     expect(actions[1]).toEqual(createTestAction())
+  })
+
+  it('Log tracks thunks when logAll is enabled though setLogAll function', () => {
+    const [store, log] = setupTestThunkStoreAndLog()
+    log.setLogAll(true)
+
+    // @ts-expect-error: Can't properly type dispatch to support thunks
+    store.dispatch(createTestThunk())
+
+    const actions = log.getActions()
+    expect(actions).toHaveLength(2)
+    expect(typeof actions[0]).toBe('function')
+    expect(actions[1]).toEqual(createTestAction())
+  })
+
+  it('Log tracks thunks when logAll is enabled, then stops tracking thunks after logAll becomes disabled', () => {
+    const [store, log] = setupTestThunkStoreAndLog(true)
+
+    // @ts-expect-error: Can't properly type dispatch to support thunks
+    store.dispatch(createTestThunk())
+    log.setLogAll(false)
+    // @ts-expect-error: Can't properly type dispatch to support thunks
+    store.dispatch(createTestThunk('foo'))
+
+    const actions = log.getActions()
+    expect(actions).toHaveLength(3)
+    expect(typeof actions[0]).toBe('function')
+    expect(actions[1]).toEqual(createTestAction())
+    expect(actions[2]).toEqual(createTestAction('foo'))
+
+    console.log(log.getActions())
   })
 
   it('Log clears everything, including thunks', () => {

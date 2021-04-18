@@ -1,5 +1,7 @@
 # redux-actions-log
 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mattlean/redux-actions-log/blob/main/LICENSE) [![npm](https://img.shields.io/npm/v/redux-actions-log.svg?colorB=brightgreen)](https://npmjs.com/package/redux-actions-log) [![Run Tests](https://github.com/mattlean/redux-actions-log/workflows/Run%20Tests/badge.svg)](https://github.com/mattlean/redux-actions-log/actions)
+
 **Redux Actions Log** is a simple [Redux middleware](https://redux.js.org/tutorials/fundamentals/part-4-store#middleware) that logs actions dispatched the store.
 
 ## Install
@@ -16,7 +18,7 @@ import setupReduxActionsLog from 'redux-actions-log';
 import rootReducer from './reducers';
 
 const [actionsLogMiddleware, actionsLog] = setupReduxActionsLog();
-const store = createStore(testReducer, applyMiddleware(actionsLogMiddleware));
+const store = createStore(rootReducer, applyMiddleware(actionsLogMiddleware));
 
 store.dispatch({
   type: 'FOOBAR_ACTION_TYPE',
@@ -33,11 +35,11 @@ Note that this package supports [TypeScript](https://www.typescriptlang.org) and
 
 Before you use this, make sure there aren't better ways to accomplish what you want first!
 
-If you simply need to debug actions, [Redux DevTools](https://redux.js.org/tutorials/fundamentals/part-4-store#redux-devtools) will most likely accomplish what you need.
+If you simply need to debug actions, [Redux DevTools](https://redux.js.org/tutorials/fundamentals/part-4-store#redux-devtools) will most likely do what you need.
 
-If you need to test simple asynchronous action creators, check out [`redux-mock-store`](https://npmjs.com/package/redux-mock-store) first as it will probably be able to accomplish what you need. (In fact this package is what inspired the creation Redux Actions Log!)
+If you need to test simple asynchronous action creators, check out [`redux-mock-store`](https://npmjs.com/package/redux-mock-store) first as it will probably be able to get the job you need done. (In fact this package is what inspired the creation Redux Actions Log.)
 
-Now if the above options don't work for you, then this middleware is hopefully what you need! The most common cases where Redux Actions Log can be useful are usually around scenarios when your application or tests need direct access to a log of Redux actions.
+Now if the above options don't work for you, then this middleware is hopefully what you need! The most common cases where Redux Actions Log can be useful are usually around scenarios when your application or tests need direct access to a log of Redux actions and you need to work with a real Redux store.
 
 ## API
 ```javascript

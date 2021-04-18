@@ -38,5 +38,17 @@
   },
   "dependencies": {
     "redux": "^4.0.5"
-  }
+  },
+  "keywords": [
+    "redux",
+    "actions",
+    "log",
+    "middleware",
+    "test",
+    "testing",
+    "action",
+    "flux",
+    "redux-actions-log",
+    "redux-middleware"
+  ]
 }

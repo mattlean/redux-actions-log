@@ -1,0 +1,5 @@
+.github/
+.eslintrc.js
+.prettierignore
+.prettierrc.json
+redux-actions-log.code-workspace

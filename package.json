@@ -1,7 +1,7 @@
 {
   "name": "redux-actions-log",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.2.0",
+  "description": "Actions log middleware for Redux",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -34,9 +34,22 @@
     "eslint-plugin-jest": "^24.3.5",
     "jest": "^26.6.3",
     "prettier": "2.2.1",
+    "redux-thunk": "^2.3.0",
     "typescript": "^4.2.4"
   },
   "dependencies": {
     "redux": "^4.0.5"
-  }
+  },
+  "keywords": [
+    "redux",
+    "actions",
+    "log",
+    "middleware",
+    "test",
+    "testing",
+    "action",
+    "flux",
+    "redux-actions-log",
+    "redux-middleware"
+  ]
 }
